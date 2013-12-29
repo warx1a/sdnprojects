@@ -1,19 +1,19 @@
-package dungeoneering;
+package com.snoopdogg.dungeoneering;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.powerbot.event.PaintListener;
 import org.powerbot.script.Manifest;
 import org.powerbot.script.PollingScript;
 
-import utils.Task;
+import com.snoopdogg.utils.Task;
 
 @Manifest(authors="Snoop Dogg", name = "ThaDogg'sDung", description="Rips shiz up")
-public class Main extends PollingScript{
+public class Main extends PollingScript implements PaintListener{
 	public static String status;
 	
-	private List<Task> tasklist = new ArrayList<>();
+	private final ArrayList<Task> tasklist = new ArrayList<>();
 	
 	@Override
 	public void start() {
@@ -22,8 +22,18 @@ public class Main extends PollingScript{
 
 	@Override
 	public int poll() {
-		Room.mapRoom();
+		for(Task t: tasklist) {
+			if(t.activate()) {
+				t.execute();
+			}
+		}
 		return 50;
+	}
+
+	@Override
+	public void repaint(Graphics arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 		
 	}
