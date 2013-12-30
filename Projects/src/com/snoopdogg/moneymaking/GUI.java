@@ -14,7 +14,7 @@ public class GUI extends JFrame implements ActionListener {
 	public static boolean isStarted;
 	private JButton start = new JButton("Start");
 	public static String[] task = {"Cop","Dog","Cat"};
-	private JComboBox methods = new JComboBox(task);
+	static JComboBox methods = new JComboBox(task);
 
 	public GUI() {
 		Container cont = getContentPane();

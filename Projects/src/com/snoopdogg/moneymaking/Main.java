@@ -5,24 +5,19 @@ import org.powerbot.script.AbstractScript;
 import com.snoopdogg.moneymaking.GUI;
 
 public class Main extends AbstractScript {
-	private static String selected;
+	public static String selection = GUI.methods.getSelectedItem().toString();
 
 	@Override
 	public void run() {
-		switch(GUI.chosen) {
-		case "Cat": selected = "Cat";
-		case "Dog": selected = "Dog";
-		case "Cop": selected = "Cop";
-			
-		}
-		
+
 	}
+	
 	public static void main(String[] args) throws InterruptedException {
 		new GUI();
 		while(!GUI.isStarted) {
-			Thread.sleep(500);
+			Thread.sleep(250);
 		}
-		System.out.println(selected);
+		System.out.print(selection);
 	}
 
 }
