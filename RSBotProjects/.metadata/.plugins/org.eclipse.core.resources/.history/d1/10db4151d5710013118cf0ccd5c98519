@@ -1,6 +1,6 @@
 package com.snoopdogg.moneymaking;
 
-import javax.swing.SwingUtilities;
+import java.awt.EventQueue;
 
 import org.powerbot.script.PollingScript;
 
@@ -11,7 +11,7 @@ public class Main extends PollingScript {
 	
 	@Override
 	public void start() {
-		SwingUtilities.invokeLater(new Runnable() {
+		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				new GUI();
@@ -26,6 +26,14 @@ public class Main extends PollingScript {
 		case "Cat": System.out.print("blah");
 		}
 		return 0;
+	}
+	
+	public static void main(String[] args) throws InterruptedException {
+		new GUI();
+		while(!GUI.isStarted) {
+			Thread.sleep(200);
+		}
+		System.out.println(GUI.chosen);
 	}
 
 }
