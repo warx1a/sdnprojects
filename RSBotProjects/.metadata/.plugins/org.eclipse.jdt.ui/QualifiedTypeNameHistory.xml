@@ -6,4 +6,5 @@
 <fullyQualifiedTypeName name="javax.swing.border.EtchedBorder"/>
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
 <fullyQualifiedTypeName name="javax.swing.SwingUtilities"/>
+<fullyQualifiedTypeName name="org.powerbot.script.methods.MethodContext"/>
 </qualifiedTypeNameHistroy>

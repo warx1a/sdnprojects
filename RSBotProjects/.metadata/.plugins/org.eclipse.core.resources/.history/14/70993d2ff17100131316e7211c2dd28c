@@ -14,7 +14,7 @@ public class Main extends PollingScript {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				new GUI(ctx);
+				new GUI();
 			}
 		});
 		chosen = GUI.chosen;

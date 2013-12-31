@@ -49,5 +49,13 @@ public class GUI extends JFrame {
 		frame.pack();
 		
 	}
+	
+	public static void main(String[] args) throws InterruptedException {
+		new GUI();
+		while(!isStarted) {
+			Thread.sleep(500);
+		}
+		System.out.println(chosen);
+	}
 
 }

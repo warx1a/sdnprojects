@@ -12,8 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 
-import org.powerbot.script.methods.MethodContext;
-
 public class GUI extends JFrame {
 	public static String chosen;
 	public static boolean isStarted;
@@ -22,9 +20,9 @@ public class GUI extends JFrame {
 	public static String[] task = {"None","Cop","Dog","Cat"};
 	static JComboBox methods = new JComboBox(task);
 
-	public GUI(MethodContext ctx) {
-		final JFrame frame = new JFrame();
-		final JPanel cont = new JPanel();
+	public GUI() {
+		JFrame frame = new JFrame();
+		JPanel cont = new JPanel();
 		frame.setSize(400,400);
 		frame.setTitle("SnoopDogg's moneymaker");
 		frame.setVisible(true);
@@ -42,12 +40,19 @@ public class GUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				chosen = methods.getSelectedItem().toString();
 				isStarted = true;
-				frame.dispose();
 			}
 		});
 		frame.add(cont);
 		frame.pack();
 		
+	}
+	
+	public static void main(String[] args) throws InterruptedException {
+		new GUI();
+		while(!isStarted) {
+			Thread.sleep(500);
+		}
+		System.out.println(chosen);
 	}
 
 }
