@@ -1,0 +1,29 @@
+package com.snoopdogg.json;
+
+import java.awt.List;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
+import org.json.simple.JSONObject;
+
+
+
+public class JSONReader {
+	try {
+		JSONObject j = new JSONObject();
+		BufferedReader read = new BufferedReader(new FileReader("C:\\Desktop\\ItemDef.json"));
+	} catch(FileNotFoundException e) {
+		e.printStackTrace();
+	}
+}
+	
+	public JSONReader() {
+		
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+
+}

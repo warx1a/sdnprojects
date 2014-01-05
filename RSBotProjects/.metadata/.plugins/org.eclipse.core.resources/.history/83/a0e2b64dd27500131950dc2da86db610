@@ -1,0 +1,24 @@
+package com.snoopdogg.divination;
+
+import java.util.LinkedList;
+
+import org.powerbot.script.PollingScript;
+
+import com.snoopdogg.util.Task;
+
+public class Main extends PollingScript {
+	private LinkedList<Task> task = new LinkedList<Task>();
+	
+	@Override
+	public void start() {
+		task.add(new HarvestPale(getContext()));
+		task.add(new DumpMemories(getContext()));
+	}
+
+	@Override
+	public int poll() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

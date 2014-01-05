@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="org.powerbot.script.PollingScript"/>
 <fullyQualifiedTypeName name="java.awt.EventQueue"/>
 <fullyQualifiedTypeName name="javax.swing.BorderFactory"/>
 <fullyQualifiedTypeName name="javax.swing.border.EtchedBorder"/>
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
 <fullyQualifiedTypeName name="javax.swing.SwingUtilities"/>
 <fullyQualifiedTypeName name="org.powerbot.script.methods.MethodContext"/>
+<fullyQualifiedTypeName name="javax.swing.JTextField"/>
+<fullyQualifiedTypeName name="com.google.gson.Gson"/>
+<fullyQualifiedTypeName name="java.awt.List"/>
+<fullyQualifiedTypeName name="org.json.simple.JSONObject"/>
+<fullyQualifiedTypeName name="java.io.BufferedReader"/>
+<fullyQualifiedTypeName name="java.io.FileReader"/>
+<fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
+<fullyQualifiedTypeName name="org.powerbot.script.methods.Equipment.Slot"/>
+<fullyQualifiedTypeName name="org.powerbot.script.wrappers.TilePath"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="org.powerbot.script.wrappers.Component"/>
+<fullyQualifiedTypeName name="org.powerbot.script.PollingScript"/>
+<fullyQualifiedTypeName name="org.powerbot.script.methods.MethodProvider"/>
+<fullyQualifiedTypeName name="org.powerbot.script.wrappers.Tile"/>
+<fullyQualifiedTypeName name="com.snoopdogg.util.Task"/>
+<fullyQualifiedTypeName name="com.snoopdogg.divination.Variables"/>
+<fullyQualifiedTypeName name="com.snoopdogg.divination.Variables.Vars"/>
+<fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="org.powerbot.script.wrappers.GameObject"/>
+<fullyQualifiedTypeName name="java.util.Random"/>
+<fullyQualifiedTypeName name="org.powerbot.script.util.Random"/>
+<fullyQualifiedTypeName name="org.powerbot.script.Manifest"/>
 </qualifiedTypeNameHistroy>
