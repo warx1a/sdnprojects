@@ -1,5 +1,4 @@
 INDEX VERSION 1.126+C:\Users\stink_000.LJ\Desktop\RSBotProjects\.metadata\.plugins\org.eclipse.jdt.core
-2997397591.index
 1144188029.index
 4149142647.index
 3015671029.index

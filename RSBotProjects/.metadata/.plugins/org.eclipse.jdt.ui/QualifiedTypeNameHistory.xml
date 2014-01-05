@@ -22,10 +22,10 @@
 <fullyQualifiedTypeName name="org.powerbot.script.wrappers.Tile"/>
 <fullyQualifiedTypeName name="com.snoopdogg.util.Task"/>
 <fullyQualifiedTypeName name="com.snoopdogg.divination.Variables"/>
-<fullyQualifiedTypeName name="com.snoopdogg.divination.Variables.Vars"/>
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
 <fullyQualifiedTypeName name="org.powerbot.script.wrappers.GameObject"/>
 <fullyQualifiedTypeName name="java.util.Random"/>
 <fullyQualifiedTypeName name="org.powerbot.script.util.Random"/>
 <fullyQualifiedTypeName name="org.powerbot.script.Manifest"/>
+<fullyQualifiedTypeName name="com.snoopdogg.divination.Variables.Vars"/>
 </qualifiedTypeNameHistroy>

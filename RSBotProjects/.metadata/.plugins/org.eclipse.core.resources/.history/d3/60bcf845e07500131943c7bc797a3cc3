@@ -1,6 +1,8 @@
 package com.snoopdogg.divination;
 
+import org.powerbot.script.lang.BasicNamedQuery;
 import org.powerbot.script.methods.MethodContext;
+import org.powerbot.script.methods.MethodProvider;
 import org.powerbot.script.wrappers.GameObject;
 import org.powerbot.script.wrappers.Tile;
 
@@ -12,11 +14,11 @@ public class HarvestPale extends Task {
 		super(ctx);
 		// TODO Auto-generated constructor stub
 	}
+	private final GameObject rift = ctx.objects.select().id(Variables.DRAYNOR_RIFT).poll();
+	private final Tile t = rift.getLocation();
 	@Override
 	public boolean activate() {
-		final GameObject rift = ctx.objects.select().id(Variables.DRAYNOR_RIFT).poll();
-		final Tile t = rift.getLocation();
-		return t.distanceTo(ctx.players.local().getLocation()) <= 5 && ctx.backpack.select().id(Variables.Vars.PALE.getMemoryId()).count() == 0;
+		return t.distanceTo(ctx.players.local().getLocation()) <= 5;
 	}
 	@Override
 	public void execute() {

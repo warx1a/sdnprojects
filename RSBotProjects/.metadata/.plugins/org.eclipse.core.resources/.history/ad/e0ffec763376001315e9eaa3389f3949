@@ -13,17 +13,13 @@ public class Main extends PollingScript {
 	
 	@Override
 	public void start() {
-		task.add(new HarvestPale(ctx));
-		task.add(new DumpMemories(ctx));
+		task.add(new HarvestPale(getContext()));
+		task.add(new DumpMemories(getContext()));
 	}
 
 	@Override
 	public int poll() {
-		for(Task t:task) {
-			if(t.activate()) {
-				t.execute();
-			}
-		}
+		ctx.objects.select().id(87306).poll().interact("Convert memories");
 		return Random.nextGaussian(100,250,1.2);
 	}
 

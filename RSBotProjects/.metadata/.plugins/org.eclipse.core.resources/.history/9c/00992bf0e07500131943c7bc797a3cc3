@@ -13,8 +13,8 @@ public class Main extends PollingScript {
 	
 	@Override
 	public void start() {
-		task.add(new HarvestPale(ctx));
-		task.add(new DumpMemories(ctx));
+		task.add(new HarvestPale(getContext()));
+		task.add(new DumpMemories(getContext()));
 	}
 
 	@Override
