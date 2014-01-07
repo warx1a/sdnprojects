@@ -4,6 +4,7 @@ import org.powerbot.script.methods.MethodContext;
 import org.powerbot.script.util.Random;
 import org.powerbot.script.wrappers.Component;
 import org.powerbot.script.wrappers.GameObject;
+import org.powerbot.script.wrappers.Item;
 
 import com.snoopdogg.util.Task;
 

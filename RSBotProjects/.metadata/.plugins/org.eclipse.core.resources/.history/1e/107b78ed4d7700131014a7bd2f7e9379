@@ -42,7 +42,7 @@ public class Main extends PollingScript implements PaintListener {
 	public void repaint(Graphics arg0) {
 		a = ctx.players.local().getInteracting();
 		Long runtime = getRuntime();
-		final Graphics2D g = (Graphics2D) arg0;
+		Graphics2D g = (Graphics2D) arg0;
 		g.setColor(Color.WHITE);
 		g.drawPolygon(ctx.players.local().getLocation().getMatrix(ctx).getBounds());
 		g.setColor(Color.BLUE);
