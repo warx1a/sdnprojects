@@ -16,7 +16,6 @@
 <fullyQualifiedTypeName name="org.powerbot.script.methods.Equipment.Slot"/>
 <fullyQualifiedTypeName name="org.powerbot.script.wrappers.TilePath"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="org.powerbot.script.wrappers.Component"/>
 <fullyQualifiedTypeName name="org.powerbot.script.PollingScript"/>
 <fullyQualifiedTypeName name="org.powerbot.script.methods.MethodProvider"/>
 <fullyQualifiedTypeName name="org.powerbot.script.wrappers.Tile"/>
@@ -25,7 +24,19 @@
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
 <fullyQualifiedTypeName name="org.powerbot.script.wrappers.GameObject"/>
 <fullyQualifiedTypeName name="java.util.Random"/>
-<fullyQualifiedTypeName name="org.powerbot.script.util.Random"/>
 <fullyQualifiedTypeName name="org.powerbot.script.Manifest"/>
+<fullyQualifiedTypeName name="org.powerbot.script.wrappers.Component"/>
+<fullyQualifiedTypeName name="java.awt.event.MouseListener"/>
+<fullyQualifiedTypeName name="org.powerbot.client.input.Mouse"/>
+<fullyQualifiedTypeName name="java.awt.event.MouseEvent"/>
+<fullyQualifiedTypeName name="org.powerbot.script.util.Random"/>
+<fullyQualifiedTypeName name="com.snoopdogg.util.IntArray"/>
+<fullyQualifiedTypeName name="org.powerbot.event.PaintListener"/>
+<fullyQualifiedTypeName name="java.awt.Graphics2D"/>
+<fullyQualifiedTypeName name="java.awt.Color"/>
+<fullyQualifiedTypeName name="org.powerbot.script.methods.Mouse"/>
+<fullyQualifiedTypeName name="java.awt.BasicStroke"/>
+<fullyQualifiedTypeName name="java.awt.Font"/>
+<fullyQualifiedTypeName name="org.powerbot.script.wrappers.Actor"/>
 <fullyQualifiedTypeName name="com.snoopdogg.divination.Variables.Vars"/>
 </qualifiedTypeNameHistroy>

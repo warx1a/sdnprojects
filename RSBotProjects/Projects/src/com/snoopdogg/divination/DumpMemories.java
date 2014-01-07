@@ -2,6 +2,7 @@ package com.snoopdogg.divination;
 
 import org.powerbot.script.methods.MethodContext;
 import org.powerbot.script.util.Random;
+import org.powerbot.script.wrappers.Component;
 import org.powerbot.script.wrappers.GameObject;
 import org.powerbot.script.wrappers.Item;
 
@@ -16,22 +17,29 @@ public class DumpMemories extends Task {
 
 	@Override
 	public boolean activate() {
-		return ctx.backpack.count() == 28;
+		return ctx.backpack.select().count() == 28;
 	}
 
 	@Override
 	public void execute() {
-		Item paleMemory = ctx.backpack.select().id(29384).poll();
+		ctx.antipatterns.setEnabled(true);
+		Component getXp = ctx.widgets.get(131,26);
 		GameObject rift = ctx.objects.select().id(Variables.DRAYNOR_RIFT).poll();
-		ctx.movement.stepTowards(rift.getLocation());
-		while(ctx.players.local().isInMotion()) {
-			sleep(250);
+		if(!rift.isOnScreen()) {
+			ctx.movement.stepTowards(rift.getLocation());
+			while(ctx.players.local().isInMotion()) {
+				sleep(250);
+			}
 		}
 		if(rift.isOnScreen()) {
 			rift.interact("Convert memories");
-		}
-		while(ctx.backpack.contains(paleMemory)) {
-			sleep(Random.nextInt(250, 500));
+			sleep(2000);
+			if(getXp.isValid() && getXp.isOnScreen()) {
+				getXp.interact("Gain-experience");
+				while(ctx.backpack.select().id(29384).count() > 0) {
+					sleep(Random.nextInt(250, 500));
+				}
+			}
 		}
 
 	}

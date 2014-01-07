@@ -4,12 +4,16 @@
 		<item value="1080" key="dialogWidth"/>
 		<item value="624" key="dialogHeight"/>
 		<list key="orderedProviders">
+			<item value="org.eclipse.ui.commands"/>
 		</list>
 		<list key="textArray">
+			<item value="jar"/>
 		</list>
 		<list key="orderedElements">
+			<item value="org.eclipse.ui.file.export(exportWizardId=org.eclipse.jdt.internal.ui.fatjarpackager.JarPackageWizard)"/>
 		</list>
 		<list key="textEntries">
+			<item value="1"/>
 		</list>
 	</section>
 	<section name="NewWizardAction">

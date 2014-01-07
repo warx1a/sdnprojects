@@ -1,0 +1,131 @@
+package com.snoopdogg.json;
+
+import java.awt.BorderLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+
+public class itemloader {
+
+    private final String ITEM_JSON_URL = "ItemDef.json";
+    private final List<String> nameList = new LinkedList<String>();
+
+    private JSONObject json = null;
+
+    private JFrame frame;
+    private JList<String> results;
+    private JTextField search;
+    private DefaultListModel<String> dlm;
+    private JLabel info;
+    private JScrollPane listScroll;
+
+    public static void main(String[] args) {
+        itemloader iw = new itemloader();
+        iw.initGUI();
+    }
+
+    public void initGUI() {
+        frame = new JFrame("Item Searcher");
+        dlm = new DefaultListModel<String>();
+        results = new JList<String>(dlm);
+        listScroll = new JScrollPane(results);
+        search = new JTextField();
+        info = new JLabel("Please search for an item below", JLabel.CENTER);
+        info.setHorizontalTextPosition(JLabel.CENTER);
+
+        search.addKeyListener(new KeyListener() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                dlm.clear();
+                List<String> arr = find(search.getText());
+                info.setText(arr.size() + " results for " + search.getText());
+                for(String i : arr) {
+                    dlm.addElement(i);
+                }
+            }
+
+        });
+
+        frame.getContentPane().setLayout(new BorderLayout());
+        frame.getContentPane().add(info, BorderLayout.NORTH);
+        frame.getContentPane().add(listScroll, BorderLayout.CENTER);
+        frame.getContentPane().add(search, BorderLayout.SOUTH);
+        frame.pack();
+        frame.setSize(300, 300);
+        frame.setVisible(true);
+    }
+
+    public itemloader() {
+        new Thread() {
+            public void run() {
+                try {
+                    load();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+    
+    public List<String> find(String name) {
+//        final long start = System.currentTimeMillis();
+        final List<String> list = new ArrayList<String>();
+//        int results = 0;
+        for(String i : nameList) {
+            if(i.toLowerCase().contains(name.toLowerCase())) {
+                list.add(i);
+//                results++;
+            }
+        }
+//        System.out.println("Found " + results + " matches for search " + name + " in " + (System.currentTimeMillis() - start) + " ms!");
+        return list;
+    }
+
+    private void load() throws Exception {
+//        final long start = System.currentTimeMillis();
+        URL url = new File(ITEM_JSON_URL).toURI().toURL();
+//        URL url = new URL(ITEM_JSON_URL);
+        BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+        String inputLine;
+        while ((inputLine = in.readLine()) != null) {
+            json = (JSONObject)new JSONParser().parse(inputLine);
+            String name = (String) json.get("name");
+            long id = (long) json.get("id");
+            nameList.add(name + " (" + id + ")");
+        }
+        in.close();
+        frame.setTitle("Item Searcher: [" + nameList.size() + "]");
+//        System.out.println("JSON Parsed in: " + (System.currentTimeMillis() - start) + " millis");
+//        System.out.println(nameList.size() + " objects added!");
+    }
+
+}
