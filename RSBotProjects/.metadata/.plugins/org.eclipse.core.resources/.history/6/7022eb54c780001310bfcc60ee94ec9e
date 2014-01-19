@@ -47,11 +47,8 @@ public class Heuristic {
 		return adjacentlist;
 	}
 	
-	public static void Main(String[] arsg) throws InterruptedException {
+	public static void Main(String[] arsg) {
 		new Map(300,300);
-		while(Map.startpoint == null) {
-			Thread.sleep(300);
-		}
 		getAdjacent(Map.startpoint);
 		System.out.println(adjacentlist);
 	}

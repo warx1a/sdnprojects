@@ -25,8 +25,8 @@ public class Map implements MouseMotionListener {
 	private boolean obstaclePointSelected;
 	
 	private LinkedList<Point> obstaclelist = new LinkedList<>();
-	public static Point endpoint = null;
-	public static Point startpoint = null;
+	protected Point endpoint = null;
+	protected Point startpoint = null;
 	
 	public static int x;
 	public static int y;

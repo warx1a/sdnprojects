@@ -43,16 +43,12 @@ public class Heuristic {
 				adjacentlist.add((Point) p);
 			}
 		}
-		System.out.println(adjacentlist);
 		return adjacentlist;
 	}
 	
-	public static void Main(String[] arsg) throws InterruptedException {
+	public static void Main(String[] arsg) {
 		new Map(300,300);
-		while(Map.startpoint == null) {
-			Thread.sleep(300);
-		}
-		getAdjacent(Map.startpoint);
+		getAdjacent(new Point(50,50));
 		System.out.println(adjacentlist);
 	}
 

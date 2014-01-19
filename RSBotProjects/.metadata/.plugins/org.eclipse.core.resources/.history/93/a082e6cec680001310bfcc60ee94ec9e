@@ -37,22 +37,17 @@ public class Heuristic {
 	
 	public static ArrayList<Point> getAdjacent(Point point) {
 		mapArea();
-		for(Object p: pointlist.toArray()) {
-			Point d = (Point) p;
-			if(Math.abs(getPoint(getIndex(point)).x - d.x) <= 1 && Math.abs(getPoint(getIndex(point)).y - d.y) <= 1) {
-				adjacentlist.add((Point) p);
+		for(Point p: pointlist) {
+			if(Math.abs(getPoint(getIndex(point)).x - p.x) <= 1 && Math.abs(getPoint(getIndex(point)).y - p.y) <= 1) {
+				adjacentlist.add(p);
 			}
 		}
-		System.out.println(adjacentlist);
 		return adjacentlist;
 	}
 	
-	public static void Main(String[] arsg) throws InterruptedException {
+	public static void Main(String[] arsg) {
 		new Map(300,300);
-		while(Map.startpoint == null) {
-			Thread.sleep(300);
-		}
-		getAdjacent(Map.startpoint);
+		getAdjacent(new Point(50,50));
 		System.out.println(adjacentlist);
 	}
 
