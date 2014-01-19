@@ -1,0 +1,72 @@
+package com.snoopdogg.pathfinding;
+
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class Map {
+	private int x;
+	private int y;
+	private Point start;
+	private Point end;
+	
+	public Map(int x, int y, Point start, Point end) {
+		this.x = x;
+		this.y = y;
+		this.start = start;
+		this.end = end;
+		final JFrame frame = new JFrame("Pathfinder");
+		final Canvas canvas = new Canvas();
+		final JPanel panel = new JPanel();
+		frame.setSize(x,y);
+		panel.setSize(x,y);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(1);
+		frame.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				final Point p = arg0.getPoint();
+				final Graphics g = frame.getGraphics();
+				g.setColor(Color.BLUE);
+				g.drawLine(p.x, p.y, p.x, p.y);
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+		});
+		
+	}
+	
+	public static void main(String[] args) {
+		new Map(500,500,new Point(20,30), new Point(30,50));
+	}
+
+}

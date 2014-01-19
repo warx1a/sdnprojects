@@ -1,0 +1,27 @@
+package com.snoopdogg.math;
+
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Graphics;
+
+import com.snoopdogg.math.GraphCanvas;
+
+public class GraphPoint {
+	
+	private int x;
+	private int y;
+	
+	public Canvas canvas;
+	
+	public Graphics g;
+	
+	public GraphPoint(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	public void SetInterval(int number) {
+		canvas.paint
+	}
+
+}

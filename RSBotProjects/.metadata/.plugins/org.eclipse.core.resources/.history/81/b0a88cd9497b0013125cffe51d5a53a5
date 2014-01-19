@@ -1,0 +1,20 @@
+package com.snoopdogg.math;
+
+import java.awt.Canvas;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
+public class GraphCanvas extends Canvas {
+	Canvas canvas;
+	
+	public Graphics draw;
+	
+	public GraphCanvas(int x,int y) {
+		Graphics2D g = (Graphics2D) draw;
+		super.
+		canvas = new Canvas();
+		canvas.setSize(x,y);
+		canvas.paint(g.drawLine(x, y, x, y));
+	}
+
+}

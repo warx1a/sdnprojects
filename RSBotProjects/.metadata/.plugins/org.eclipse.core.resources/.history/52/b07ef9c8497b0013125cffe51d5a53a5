@@ -1,0 +1,13 @@
+package com.snoopdogg.math;
+
+import java.awt.Canvas;
+
+public class GraphCanvas {
+	Canvas canvas;
+	
+	public GraphCanvas(int x,int y) {
+		canvas = new Canvas();
+		canvas.setSize(x,y);
+	}
+
+}

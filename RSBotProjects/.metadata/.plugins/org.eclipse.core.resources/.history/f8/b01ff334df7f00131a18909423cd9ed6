@@ -1,0 +1,123 @@
+package com.snoopdogg.pathfinding;
+
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.util.LinkedList;
+
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+
+public class Map implements MouseMotionListener {
+	private int x;
+	private int y;
+	private Point start;
+	private Point end;
+	private Graphics g;
+	private JFrame frame;
+	
+	private boolean startPointSelected;
+	
+	private LinkedList<Point> obstaclelist = new LinkedList<>();
+	
+	public Map(int x, int y, Point start, Point end) {
+		this.x = x;
+		this.y = y;
+		this.start = start;
+		this.end = end;
+		final JMenuBar MENUBAR = new JMenuBar();
+		final JMenu MENU = new JMenu("Start/End/Obst");
+		final JMenuItem STARTPOINT = new JMenuItem("Start");
+		frame = new JFrame("Pathfinder");
+		final Canvas canvas = new Canvas();
+		final JPanel panel = new JPanel();
+		frame.setSize(x,y);
+		panel.setSize(x,y);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(1);
+		frame.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				final Point p = arg0.getPoint();
+				g = frame.getGraphics();
+				if(startPointSelected) {
+					g.setColor(Color.GREEN);
+					g.drawLine(p.x, p.y, p.x, p.y);
+					g.drawOval(p.x, p.y, 30, 30);
+				} else {
+					g.setColor(Color.BLUE);
+					g.drawLine(p.x, p.y, p.x, p.y);
+					obstaclelist.add(p);
+				}
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+		});
+		frame.addMouseMotionListener(this);
+		STARTPOINT.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				startPointSelected = true;
+				
+			}
+			
+		});
+		MENU.add(STARTPOINT);
+		MENUBAR.add(MENU);
+		frame.add(MENUBAR);
+		
+	}
+	
+	public static void main(String[] args) {
+		new Map(500,500,new Point(20,30), new Point(30,50));
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent arg0) {
+		g = frame.getGraphics();
+		final Point z = arg0.getPoint();
+		g.setColor(Color.BLUE);
+		g.drawLine(z.x,z.y,z.x,z.y);
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

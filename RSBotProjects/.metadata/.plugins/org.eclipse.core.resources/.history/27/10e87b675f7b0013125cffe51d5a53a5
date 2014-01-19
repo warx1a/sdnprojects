@@ -1,0 +1,42 @@
+package com.snoopdogg.math;
+
+import java.awt.Canvas;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Insets;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextPane;
+
+public class Grapher extends JPanel {
+	
+	public Graphics g;
+	
+	public Grapher() {
+		super.paintComponent(g);
+	}
+	
+	public static void DisplayGUI() {
+		JFrame frame = new JFrame("Snoop Dogg's Grapher");
+		JTextPane x_pane = new JTextPane();
+		JTextPane y_pane = new JTextPane();
+		JPanel panel = new JPanel();
+		panel.setSize(new Dimension(500,500));
+		x_pane.setMargin(new Insets(0,10,0,10));
+		y_pane.setMargin(new Insets(0,10,0,19));
+		x_pane.setText("x");
+		y_pane.setText("y");
+		panel.add(x_pane);
+		panel.add(y_pane);
+		frame.add(panel);
+		frame.pack();
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	}
+	
+	public static void main(String[] args) {
+		DisplayGUI();
+	}
+
+}

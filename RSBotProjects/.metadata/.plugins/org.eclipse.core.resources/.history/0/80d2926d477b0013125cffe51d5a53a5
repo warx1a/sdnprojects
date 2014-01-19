@@ -1,0 +1,33 @@
+package com.snoopdogg.math;
+
+import java.awt.Canvas;
+import java.awt.Color;
+
+public class GraphPoint {
+	
+	private int x;
+	private int y;
+	
+	private Canvas canvas = new Canvas();
+	public GraphPoint(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
+	}
+	
+	public void setGraphBackground(Color color) {
+		canvas.setBackground(color);
+	}
+	
+	public void Graph(Color color) {
+		canvas.setBackground(Color color);
+	}
+
+}

@@ -1,0 +1,42 @@
+package com.snoopdogg.pathfinding;
+
+import java.awt.Canvas;
+import java.awt.Graphics;
+import java.awt.Point;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class Map {
+	private int x;
+	private int y;
+	private Point start;
+	private Point end;
+	
+	private final Graphics g = null;
+	
+	public Map(int x, int y, Point start, Point end) {
+		this.x = x;
+		this.y = y;
+		this.start = start;
+		this.end = end;
+		final JFrame frame = new JFrame("Pathfinder");
+		final Canvas canvas = new Canvas();
+		final JPanel panel = new JPanel();
+		frame.setSize(x,y);
+		panel.setSize(x,y);
+		paintLine(g);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(1);
+		
+	}
+	
+	public void paintLine(Graphics g) {
+		g.drawLine(start.x,start.y,end.x,end.y);
+	}
+	
+	public static void main(String[] args) {
+		new Map(500,500,new Point(20,30), new Point(30,50));
+	}
+
+}
