@@ -1,58 +1,66 @@
 package resume;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import sun.awt.image.BufferedImageDevice;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 
 public class PaintSoftware {
-	private final static Color[] str = new Color[]{Color.red,Color.green,Color.blue};
-	private final static JFrame frame = new JFrame("SnoopDogg's Painter");
-	private final static JPanel panel = new JPanel();
-	private final static JComboBox<Color> colors = new JComboBox<>(str);
-	private static Color chosen = new Color(0,0,0);
+	private final JFrame frame = new JFrame("SnoopDogg's Painter");
+    private final JPanel panel = new JPanel();
+    private final JComboBox<Integer> pointsize = new JComboBox<>(new Integer[] {0,1,2,3,4,5});
+	private final JComboBox<String> colors = new JComboBox<>(new String[]{"Black","Red","Blue","Green"});
+    private final JButton clear = new JButton("Clear");
+    private Point click;
+    private Color chosen;
+    private String picked = "Black";
+    private int size = 0;
 	
-	public static void init() {
-		final Graphics g = frame.getGraphics();
+	public PaintSoftware() {
 		frame.setSize(500,500);
+        panel.setSize(500,500);
 		colors.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-                Color chosen = (Color)colors.getSelectedItem();
-                System.out.println(chosen);
+                picked = colors.getSelectedItem().toString();
 					
 				
 			}
 			
 		});
+        pointsize.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                size = (int)pointsize.getSelectedItem();
+            }
+        });
+        clear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panel.repaint();
+            }
+        });
 		frame.addMouseMotionListener(new MouseMotionListener() {
-			@Override
-			public void mouseDragged(MouseEvent e) {
-				final Point x = e.getPoint();
-				g.setColor(chosen);
-				g.drawLine(x.x, x.y, x.x, x.y);
-				
-			}
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                paintComponent(panel.getMousePosition());
 
-			@Override
-			public void mouseMoved(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-		});
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                // TODO Auto-generated method stub
+
+            }
+
+        });
 		frame.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(final MouseEvent arg0) {
-				final Point click = arg0.getPoint();
-				g.setColor(chosen);
-				g.drawLine(click.x, click.y, click.x, click.y);	
+				paintComponent(panel.getMousePosition());
 			}
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
@@ -78,13 +86,42 @@ public class PaintSoftware {
 				
 			}
 		});
-		panel.add(colors);
+		panel.add(colors,BorderLayout.WEST);
+        panel.add(pointsize,BorderLayout.EAST);
+        panel.add(clear,BorderLayout.SOUTH);
 		frame.add(panel);
 		frame.setVisible(true);
 	}
+
+    private void paintComponent(Point p) {
+        final Graphics g = panel.getGraphics();
+        final Graphics2D g1 = (Graphics2D)g;
+        g1.setColor(getChosenColor());
+        if(size == 0) {
+            g1.drawLine(p.x,p.y,p.x,p.y);
+        } else {
+            g1.drawOval(p.x,p.y,size,size);
+        }
+    }
+
+    private Color getChosenColor() {
+        switch(picked) {
+            case("Red"): chosen = Color.red;
+                break;
+            case("Blue"): chosen = Color.blue;
+                break;
+            case("Green"): chosen = Color.green;
+                break;
+            default:
+                chosen = Color.black;
+                break;
+
+        }
+        return chosen;
+    }
 	
 	public static void main(String[] args) {
-		init();
+		new PaintSoftware();
 	}
 }
 
