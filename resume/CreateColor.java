@@ -35,6 +35,7 @@ public class CreateColor {
                 if(getColor() != null) {
                     vars.chosen = getColor();
                 }
+                frame.dispose();
             }
         });
     }

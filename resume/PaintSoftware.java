@@ -26,6 +26,7 @@ public class PaintSoftware {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
                 vars.picked = colors.getSelectedItem().toString();
+                getChosenColor();
 					
 				
 			}
@@ -103,7 +104,7 @@ public class PaintSoftware {
     private void paintComponent(Point p) {
         final Graphics g = panel.getGraphics();
         final Graphics2D g1 = (Graphics2D)g;
-        g1.setColor(getChosenColor());
+        g1.setColor(vars.chosen);
         if(vars.size == 0) {
             g1.drawLine(p.x,p.y,p.x,p.y);
         } else {
