@@ -9,15 +9,15 @@ import java.awt.image.BufferedImage;
 import javax.swing.*;
 
 public class PaintSoftware {
+    private final SharedVars vars = new SharedVars();
 	private final JFrame frame = new JFrame("SnoopDogg's Painter");
     private final JPanel panel = new JPanel();
+    private final JPanel loadingpanel = new JPanel();
     private final JComboBox<Integer> pointsize = new JComboBox<>(new Integer[] {0,1,2,3,4,5});
 	private final JComboBox<String> colors = new JComboBox<>(new String[]{"Black","Red","Blue","Green"});
     private final JButton clear = new JButton("Clear");
+    private final JButton createcolor = new JButton("Custom color");
     private Point click;
-    private Color chosen;
-    private String picked = "Black";
-    private int size = 0;
 	
 	public PaintSoftware() {
 		frame.setSize(500,500);
@@ -25,7 +25,7 @@ public class PaintSoftware {
 		colors.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-                picked = colors.getSelectedItem().toString();
+                vars.picked = colors.getSelectedItem().toString();
 					
 				
 			}
@@ -34,13 +34,19 @@ public class PaintSoftware {
         pointsize.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                size = (int)pointsize.getSelectedItem();
+                vars.size = (int)pointsize.getSelectedItem();
             }
         });
         clear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 panel.repaint();
+            }
+        });
+        createcolor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new CreateColor();
             }
         });
 		frame.addMouseMotionListener(new MouseMotionListener() {
@@ -89,6 +95,7 @@ public class PaintSoftware {
 		panel.add(colors,BorderLayout.WEST);
         panel.add(pointsize,BorderLayout.EAST);
         panel.add(clear,BorderLayout.SOUTH);
+        panel.add(createcolor,BorderLayout.EAST);
 		frame.add(panel);
 		frame.setVisible(true);
 	}
@@ -97,27 +104,27 @@ public class PaintSoftware {
         final Graphics g = panel.getGraphics();
         final Graphics2D g1 = (Graphics2D)g;
         g1.setColor(getChosenColor());
-        if(size == 0) {
+        if(vars.size == 0) {
             g1.drawLine(p.x,p.y,p.x,p.y);
         } else {
-            g1.drawOval(p.x,p.y,size,size);
+            g1.drawOval(p.x,p.y,vars.size,vars.size);
         }
     }
 
     private Color getChosenColor() {
-        switch(picked) {
-            case("Red"): chosen = Color.red;
+        switch(vars.picked) {
+            case("Red"): vars.chosen = Color.red;
                 break;
-            case("Blue"): chosen = Color.blue;
+            case("Blue"): vars.chosen = Color.blue;
                 break;
-            case("Green"): chosen = Color.green;
+            case("Green"): vars.chosen = Color.green;
                 break;
             default:
-                chosen = Color.black;
+                vars.chosen = Color.black;
                 break;
 
         }
-        return chosen;
+        return vars.chosen;
     }
 	
 	public static void main(String[] args) {
