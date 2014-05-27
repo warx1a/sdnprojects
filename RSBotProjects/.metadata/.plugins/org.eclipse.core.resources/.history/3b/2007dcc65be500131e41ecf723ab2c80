@@ -1,0 +1,12 @@
+package com.snoopdogg.chat;
+
+public class ClientContext extends org.powerbot.script.rt6.ClientContext {
+	
+	public final Chatbox chatbox;
+	
+	public ClientContext(org.powerbot.script.rt6.ClientContext ctx) {
+		super(ctx);
+		this.chatbox = new Chatbox(this);
+	}
+
+}

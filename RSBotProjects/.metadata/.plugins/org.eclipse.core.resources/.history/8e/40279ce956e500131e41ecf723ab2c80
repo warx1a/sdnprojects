@@ -1,0 +1,33 @@
+package com.snoopdogg.grinder;
+
+import java.awt.Graphics;
+import java.util.ArrayList;
+
+import org.powerbot.script.PaintListener;
+import org.powerbot.script.PollingScript;
+import org.powerbot.script.rt6.ClientContext;
+
+import com.snoopdogg.util.Task;
+
+public class Main extends PollingScript<org.powerbot.script.rt6.ClientContext> implements PaintListener {
+
+	private ArrayList<Task> tasks = new ArrayList<Task>();
+	
+	@Override
+	public void start() {
+		tasks.add(new Bank(ctx));
+		tasks.add(new Grind(ctx));
+	}
+	
+	@Override
+	public void poll() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void repaint(Graphics arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+}

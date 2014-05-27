@@ -1,0 +1,57 @@
+package com.snoopdogg.divination;
+
+import java.util.concurrent.Callable;
+
+import org.powerbot.script.Condition;
+import org.powerbot.script.Random;
+import org.powerbot.script.rt6.ClientContext;
+import org.powerbot.script.rt6.Component;
+import org.powerbot.script.rt6.GameObject;
+
+import com.snoopdogg.util.Task;
+
+public class DumpMemories extends Task {
+	
+	public DumpMemories(ClientContext ctx) {
+		super(ctx);
+		// TODO Auto-generated constructor stub
+	}
+
+	private final int DRAYNOR_RIFT = 87306;
+	
+	
+
+	@Override
+	public boolean activate() {
+		return ctx.backpack.select().count() == 28;
+	}
+
+	@Override
+	public void execute() {
+		final Component getXp = ctx.widgets.component(131,26);
+		final GameObject rift = ctx.objects.select().id(DRAYNOR_RIFT).nearest().poll();
+		if(!rift.inViewport()) {
+			ctx.movement.step(rift.tile());
+			Condition.wait(new Callable<Boolean>() {
+				@Override
+				public Boolean call() throws Exception {
+					return !ctx.players.local().inMotion();
+				}
+			}, (int) Random.nextDouble(500,780), 15);
+		}
+		if(rift.inViewport()) {
+			rift.interact("Convert memories");
+			if(getXp.valid() && getXp.inViewport()) {
+				getXp.interact("Gain-experience");
+			}
+            Condition.wait(new Callable<Boolean>() {
+                @Override
+                public Boolean call() throws Exception {
+                    return !rift.valid();
+                }
+            }, Random.nextGaussian(400, 650, 1.992), 25);
+		}
+
+	}
+
+}

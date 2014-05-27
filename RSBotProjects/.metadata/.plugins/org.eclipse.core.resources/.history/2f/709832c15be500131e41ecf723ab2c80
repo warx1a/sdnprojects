@@ -1,0 +1,33 @@
+package com.snoopdogg.util;
+
+
+import java.awt.*;
+
+public class PercentBar {
+
+    private Color background;
+    private Color loading;
+    private int max_val;
+    private int percent;
+
+    public PercentBar(Color background,Color loading,Rectangle boundaries,int min_val,int max_val,Point graph_point,Graphics2D g) {
+        if(background == null) {
+            this.background = Color.white;
+        } else {
+            this.background = background;
+        }
+        if(loading == null) {
+            this.loading = Color.black;
+        } else {
+            this.loading = loading;
+        }
+        this.percent = (max_val / min_val);
+        final int width = (int)boundaries.getWidth();
+        final int height = (int)boundaries.getHeight();
+        final int fill_in = (int)this.percent & width;
+        g.setColor(this.background);
+        g.drawRect(boundaries.x,boundaries.y,boundaries.x,boundaries.y);
+        g.setColor(this.loading);
+        g.drawRect(boundaries.x,boundaries.y,fill_in,boundaries.y);
+    }
+}

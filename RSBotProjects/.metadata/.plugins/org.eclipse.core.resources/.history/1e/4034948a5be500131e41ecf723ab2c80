@@ -1,0 +1,5 @@
+package dungeoneering.enums;
+
+public enum RoomState {
+	NONE,UNSOLVABLE,UNKNOWN,GUARDIAN,BOSS,HOME,PUZZLE
+}

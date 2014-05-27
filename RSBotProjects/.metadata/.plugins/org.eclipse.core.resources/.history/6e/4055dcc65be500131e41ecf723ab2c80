@@ -1,0 +1,8 @@
+package com.snoopdogg.chat;
+
+import org.powerbot.script.rt6.Component;
+
+public enum ChatIndex {
+	FIRST();
+
+}

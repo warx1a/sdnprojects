@@ -1,0 +1,105 @@
+package com.snoopdogg.chat;
+
+import java.awt.AWTException;
+import java.awt.Graphics;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.util.Arrays;
+import java.util.HashMap;
+
+import javax.swing.KeyStroke;
+
+import org.powerbot.script.rt6.Component;
+import org.powerbot.script.rt6.Player;
+import org.powerbot.script.rt6.PlayerQuery;
+import org.powerbot.script.rt6.TileMatrix;
+
+public class Chatbox {
+	
+	private HashMap<String,String> sellers = new HashMap<String,String>();
+	
+	private final ClientContext ctx;
+	
+	public Chatbox(ClientContext ctx) {
+		this.ctx = ctx;
+	}
+	
+	public boolean isChatting() {
+		final Component chatarea = ctx.widgets.component(137,88);
+		return chatarea.text().equals("[Press enter to chat]");
+	}
+	
+	public String getText(final int index) {
+		final Component textfield;
+		try {
+			textfield = ctx.widgets.component(137, 90).component(index);
+		} catch(NullPointerException e) {
+			return null;
+		}
+		if(textfield.visible() && textfield.valid()) {
+			return textfield.text();
+		}
+		return null;
+	}
+	
+	public boolean report(final String player) {
+		final Component REPORT_BUTTON = ctx.widgets.component(137, 79);
+		if(REPORT_BUTTON.visible() && REPORT_BUTTON.valid()) {
+			if(REPORT_BUTTON.interact("Report abuse")) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void type(final String string,int delay,boolean click) {
+		final Robot robot;
+		if(!click) {
+			try {
+				robot = new Robot();
+				robot.setAutoDelay(delay);
+				robot.keyPress(KeyEvent.VK_ENTER);
+				for(String s:Arrays.asList(string)) {
+					robot.keyPress(KeyStroke.getKeyStroke(s).getKeyCode());
+				}
+			}catch(AWTException e) {
+				e.printStackTrace();
+			}
+		} else {
+			try {
+				final Component chatbox = ctx.widgets.widget(137).component(88);
+				if(chatbox.text().equals("[Press enter to chat]")) {
+					if(chatbox.interact("Enter message")) {
+						robot = new Robot();
+						robot.setAutoDelay(delay);
+						for(String s:Arrays.asList(string)) {
+							robot.keyPress(KeyStroke.getKeyStroke(s).getKeyCode());
+						}
+					}
+				}
+			}catch(AWTException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void addSellers(final String term,final String text,final String player) {
+		for(String s:text.split(" ")) {
+			if(s.equals(term)) {
+				sellers.put(term, player);
+			}
+		}
+	}
+	
+	public void paintSellers() {
+		PlayerQuery<Player> players = ctx.players.select();
+		for(Player player:players) {
+			if(sellers.containsValue(player)) {
+				final TileMatrix tile = player.tile().matrix(ctx);
+				final Graphics g = null;
+				tile.draw(g);
+			}
+		}
+	}
+
+}

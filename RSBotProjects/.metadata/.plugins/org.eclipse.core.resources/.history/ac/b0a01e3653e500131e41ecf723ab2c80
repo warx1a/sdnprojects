@@ -1,0 +1,7 @@
+package com.snoopdogg.grinder;
+
+public class Bank {
+	
+	private final int[] products = {10111,235,241,1975,9594,9736,};
+
+}

@@ -1,0 +1,41 @@
+package dungeoneering.wrappers;
+
+import java.util.ArrayList;
+
+import org.powerbot.script.Tile;
+
+import dungeoneering.enums.RoomState;
+
+public class Room extends Object {
+	
+	private Tile uniquetile;
+	private Door north,south,east,west;
+	private RoomState state;
+	
+	public Room(Door north,Door east,Door south,Door west,Tile uniquetile) {
+		this.north = north;
+		this.east = east;
+		this.south = south;
+		this.west = west;
+		this.uniquetile = uniquetile;
+	}
+	
+	
+	/*
+	 * Maps the rooms tiles
+	 * @param nothing
+	 */
+	public ArrayList<Tile> map() {
+		return null;
+	}
+	
+	@Override
+	public boolean equals(Object room) {
+		if(room instanceof Room) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+}

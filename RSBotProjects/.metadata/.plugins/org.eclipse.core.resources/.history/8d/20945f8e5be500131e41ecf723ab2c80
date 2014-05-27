@@ -1,0 +1,23 @@
+package dungeoneering.solver;
+
+import org.powerbot.script.rt6.ClientContext;
+
+import com.snoopdogg.util.Task;
+
+public class StartRoom extends Task {
+
+	public StartRoom(ClientContext ctx) {
+		super(ctx);
+	}
+
+	@Override
+	public boolean activate() {
+		return true;
+	}
+
+	@Override
+	public void execute() {
+		// TODO Auto-generated method stub
+		
+	}
+}

@@ -1,0 +1,27 @@
+package dungeoneering.wrappers;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class RoomList {
+	
+	private List<Room> rooms;
+	
+	public RoomList() {
+		this.rooms = Collections.synchronizedList(rooms);
+	}
+	
+	public void add(final Room room) {
+		rooms.add(room);
+	}
+	
+	public void remove(final Room room) {
+		for(Room area:rooms) {
+			if(area.equals(room)) {
+				rooms.remove(room);
+			}
+		}
+	}
+
+}

@@ -1,0 +1,55 @@
+package com.snoopdogg.divination;
+
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.util.LinkedList;
+
+import org.powerbot.script.Random;
+import org.powerbot.script.Script;
+import org.powerbot.script.PaintListener;
+import org.powerbot.script.PollingScript;
+import org.powerbot.script.rt6.Actor;
+import org.powerbot.script.rt6.ClientContext;
+import org.powerbot.script.rt6.Npc;
+
+import com.snoopdogg.util.Task;
+
+public class Main extends PollingScript<org.powerbot.script.rt6.ClientContext> implements PaintListener {
+	
+	private LinkedList<Task> task = new LinkedList<Task>();
+	
+	@Override
+	public void start() {
+		task.add(new HarvestPale(ctx));
+		task.add(new DumpMemories(ctx));
+	}
+
+	@Override
+	public int poll() {
+		for(Task t:task) {
+			if(t.activate()) {
+				t.execute();
+			}
+		}
+		return Random.nextGaussian(100,250,1.2);
+	}
+
+	@Override
+	public void repaint(Graphics arg0) {
+		Actor a = ctx.players.local().interacting();
+		Long runtime = getRuntime();
+		final Graphics2D g = (Graphics2D) arg0;
+		g.setColor(Color.WHITE);
+		g.drawPolygon(ctx.players.local().tile().matrix(ctx).bounds());
+		g.setColor(Color.BLUE);
+		g.setStroke(new BasicStroke(16));
+		g.drawString(ctx.players.local().interacting().name(), 100, 100);
+		g.drawString(runtime.toString(),120,120);
+		if(a != null) {
+			a.draw(g);
+		}
+	}
+
+}

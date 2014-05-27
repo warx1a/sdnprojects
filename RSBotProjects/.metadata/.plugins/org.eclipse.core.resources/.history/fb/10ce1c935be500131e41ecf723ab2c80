@@ -1,0 +1,44 @@
+package statestudios.graph;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics2D;
+
+import javax.swing.JFrame;
+
+public class Graph {
+	
+	private final int max;
+	private final int min;
+	private final int spaces;
+	private final int[] values;
+	private final String key;
+	
+	public Graph(final String key,final int max,final int min,final int spaces,final int... values) {
+		this.key = key;
+		this.max = max;
+		this.min = min;
+		this.spaces = spaces;
+		this.values = values;
+	}
+	
+	public void graph() {
+		final JFrame frame = new JFrame(key);
+		frame.setSize(new Dimension(500,500));
+		frame.setVisible(true);
+		final Graphics2D g = (Graphics2D) frame.getGraphics();
+		final int spaceamount = frame.getHeight() / spaces;
+		final int spacedistance = frame.getHeight() / spaceamount;
+		for(int i = 0; i < spaceamount;i++) {
+			g.setColor(Color.red);
+			g.drawString("Hello", 0, 0);
+			g.drawLine(0,spacedistance * i,frame.getWidth(),spacedistance * i);
+		}
+	}
+	
+	public static void main(String[] args) {
+		Graph graph = new Graph("BTC",300,200,107,5);
+		graph.graph();
+	}
+
+}

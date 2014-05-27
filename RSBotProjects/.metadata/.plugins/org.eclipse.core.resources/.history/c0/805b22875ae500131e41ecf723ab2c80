@@ -1,0 +1,59 @@
+package com.snoopdogg.grinder;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class GUI {
+	
+	public static boolean started;
+	public static Options chosen;
+	
+	public static void init() {
+		final JFrame frame = new JFrame("Snoop Dogg's grinder");
+		final JPanel panel = new JPanel();
+		final JComboBox<Options> options = new JComboBox<Options>(Options.values());
+		final JButton start = new JButton("Start");
+		frame.setSize(new Dimension(500,500));
+		panel.setSize(frame.getPreferredSize());
+		options.setSelectedItem(Options.NONE);
+		panel.setLayout(new BorderLayout());
+		options.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				chosen = (Options) options.getSelectedItem();
+			}
+			
+		});
+		panel.add(options,BorderLayout.CENTER);
+		start.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				started = true;
+				frame.dispose();
+			}
+		});
+		panel.add(start,BorderLayout.SOUTH);
+		frame.add(panel);
+		frame.setVisible(true);
+	}
+	
+	public static void main(String[] args) {
+		GUI.init();
+		while(!GUI.started) {
+			try {
+				Thread.sleep(500);
+			}catch(InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println(GUI.chosen.display());
+	}
+
+}

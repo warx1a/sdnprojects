@@ -1,0 +1,45 @@
+package com.snoopdogg.divination;
+
+import java.util.concurrent.Callable;
+
+import org.powerbot.script.Condition;
+import org.powerbot.script.Random;
+import org.powerbot.script.rt6.ClientContext;
+import org.powerbot.script.rt6.Npc;
+
+import com.snoopdogg.util.Task;
+
+public class HarvestPale extends Task {
+	
+	public HarvestPale(ClientContext ctx) {
+		super(ctx);
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public boolean activate() {
+		return ctx.backpack.select().id(Vars.PALE.getMemoryId()).count() == 0 || ctx.backpack.select().count() < 28;
+	}
+	@Override
+	public void execute() {
+		final Npc moth = ctx.npcs.select().id(Vars.PALE.getIds()).nearest().poll();
+		if(moth.inViewport()) {
+			moth.interact("Harvest");
+			Condition.wait(new Callable<Boolean>() {
+				@Override
+				public Boolean call() {
+					return !moth.valid();
+				}
+			}, Random.nextGaussian(700,900,1.223), 5);
+		} else {
+			ctx.movement.step(moth.tile());
+			Condition.wait(new Callable<Boolean>() {
+				@Override
+				public Boolean call() {
+					return ctx.players.local().inMotion();
+				}
+			}, Random.nextGaussian(500, 800, 1.1273476), 15);
+		}
+		
+	}
+
+}

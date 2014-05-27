@@ -1,0 +1,24 @@
+package dungeoneering.main;
+
+import org.powerbot.script.PollingScript;
+import org.powerbot.script.rt6.ClientContext;
+
+import dungeoneering.wrappers.Room;
+import dungeoneering.wrappers.RoomList;
+
+public class Main extends PollingScript<ClientContext> {
+	
+	private RoomList rooms = new RoomList();
+	
+	@Override
+	public void start() {
+		System.out.println("Started");
+		rooms.add(new Room(null,null,null,null,null));
+	}
+
+	@Override
+	public void poll() {
+		
+	}
+
+}

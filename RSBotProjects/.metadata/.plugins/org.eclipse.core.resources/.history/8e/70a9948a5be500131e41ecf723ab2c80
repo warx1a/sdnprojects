@@ -1,0 +1,7 @@
+package dungeoneering.enums;
+
+public enum DoorState {
+	
+	NONE,LOCKED,BLOCKED,CLEARED,GUARDIAN,OPENED;
+
+}

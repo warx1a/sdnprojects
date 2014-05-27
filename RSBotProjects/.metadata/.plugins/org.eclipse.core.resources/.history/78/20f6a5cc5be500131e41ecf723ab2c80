@@ -1,0 +1,84 @@
+import resume.paintsoftware.Colors;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Tutorial {
+
+    private String selected;
+    private Colors chosen;
+
+    final JFrame frame = new JFrame("Title of frame");
+    final JPanel panel = new JPanel();
+
+    public Tutorial() {
+    }
+
+    public void init() {
+        frame.setPreferredSize(new Dimension(500,500));
+        panel.setPreferredSize(frame.getSize());
+        panel.setLayout(new BorderLayout());
+        final JComboBox<String> colors = new JComboBox<String>(new String[]{"None","Red","Blue","Black"});
+        final JComboBox<Colors> col = new JComboBox<Colors>(Colors.values());
+        col.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                chosen = (Colors) col.getSelectedItem();
+            }
+        });
+        panel.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                paint(e.getPoint());
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+        panel.addMouseMotionListener(new MouseMotionListener() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                paint(e.getPoint());
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+
+            }
+        });
+        panel.add(col, BorderLayout.EAST);
+        frame.add(panel);
+        frame.setVisible(true);
+    }
+
+    public void paint(final Point p) {;
+        Graphics2D g = (Graphics2D) panel.getGraphics();
+        g.setColor(chosen.getColor());
+        if(panel.contains(p)) {
+            g.drawLine(p.x,p.y,p.x,p.y);
+        }
+    }
+
+    public static void main(String[] args) {
+        Tutorial t = new Tutorial();
+        t.init();
+    }
+}
