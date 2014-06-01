@@ -1,4 +1,4 @@
-var restify = require("restify"),http = require("http");
+var restify = require("restify"),http = require("http"),lookup = require("./Lookup");
 
 var parts = {
 		host:"services.runescape.com",
@@ -17,26 +17,11 @@ function home(req,res,next) {
 }
 
 function price_pass(req,res,next) {
-	var response;
-	parts.path += req.params.id.toString();
-	console.log(parts.host+parts.path);
-	var request = http.request(parts,function(resp) {
-		resp.on("error",function(err) {
-			console.log(err);
-		});
-		resp.on("data",function(grp) {
-			response += grp;
-		});
-		resp.on("end",function() {
-			response = JSON.parse(response.slice(9,response.length));
-			console.log("parsed");
-			res.setHeader("application-type","text/plain");
-			res.write(response.item.current.price.toString());
-			console.log("ending request");
-		});
-	});
-	request.end();
-	return next();
+	var api = {};
+	api.req = req;
+	api.res = res;
+	api.next = next;
+	lookup.lookup(api);
 }
 
 var server = restify.createServer();
